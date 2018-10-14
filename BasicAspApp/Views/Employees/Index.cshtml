@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Employee List";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        margin: 10px auto;
+        text-align: center
+    }
+
+    table {
+        margin: 0 auto;
+        width: 90%
+    }
+
+    table, th, td {
+        border: 1px solid #eee;
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 5px;
+        text-align: center
+    }
+
+    .txt-left {
+        text-align: left;
+    }
+</style>
+
+<h1>Employee List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th class="txt-left">操作</th>
+    </tr>
+    @foreach (var employee in Model.Employees)
+    {
+        <tr>
+            <td><a href="/Employees/Detail/@employee.Id">@employee.Id</a></td>
+            <td>@employee.Name</td>
+            <td class="txt-left">
+                <a asp-controller="Employees" asp-action="Detail" asp-route-Id="@employee.Id">详情</a> &nbsp;
+                <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">编辑</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<p><a asp-action="Create">新增员工</a></p>
